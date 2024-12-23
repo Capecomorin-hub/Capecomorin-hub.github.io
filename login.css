@@ -1,0 +1,84 @@
+/* Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body Background and Centering */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("https://scontent.fknu2-1.fna.fbcdn.net/v/t39.30808-6/451585470_957746809488047_1753055814751163797_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_ohc=vO23bR-1DbcQ7kNvgF0Y-Xv&_nc_zt=23&_nc_ht=scontent.fknu2-1.fna&_nc_gid=ApBsm_kQgSydlUV52iNnoQ_&oh=00_AYASXRexQIOscFsrGm-mzwjLpqgCOwoG8jpg9VtE4MMfew&oe=676730FF");
+    background-size: cover; /* Ensures image covers the box */
+    background-position: center; /* Centers the image */
+    transition: transform 1s ease, opacity 1s ease; /* Smooth transitions */
+    opacity: 0.85; /* Start with lower opacity */
+   
+}
+
+
+/* Login Box Styling */
+.loginbox {
+    /* Center items vertically */
+    height:400px;
+    background: #ffffff;
+    width: 450px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.8s ease 0.3s; 
+    text-align: center;
+}
+/* Hover Effect */
+.loginbox:hover {   box-shadow: 0 16px 40px rgba(0, 0, 0, 50) ; /* Very dark and wide shadow */}
+.loginbox h2 {
+    margin-bottom: 20px;
+    color: #333333;
+    font-size: 24px;
+}
+
+/* Input Fields */
+.loginbox input, select  {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    background-color: #2c0217;
+}
+
+.loginbox input,select:focus {
+    border-color: #2c0217;
+    box-shadow: 0 0 5px rgba(70, 6, 110, 0.5);
+}
+
+
+/* Submit Button */
+.loginbox button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #1a1a1a;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.loginbox button:hover {
+    background: rgb(0, 0, 0);
+    color: whitesmoke;
+    border: #2c0217;
+    
+
+}
