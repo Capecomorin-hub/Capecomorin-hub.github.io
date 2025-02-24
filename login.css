@@ -12,7 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: url("https://scontent.fknu2-1.fna.fbcdn.net/v/t39.30808-6/451585470_957746809488047_1753055814751163797_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_ohc=srag5g1AP8kQ7kNvgFoCoAq&_nc_zt=23&_nc_ht=scontent.fknu2-1.fna&_nc_gid=AoEOuezA3Z9JsKF3yYO-I2y&oh=00_AYAtwGdyHDT7IiHWEFifXFA2oP0sCYhige4oqup4rX9rYQ&oe=676F523F");
+    background-image: url("img/school1.jpg");
     background-size: cover; /* Ensures image covers the box */
     background-position: center; /* Centers the image */
     transition: transform 1s ease, opacity 1s ease; /* Smooth transitions */
