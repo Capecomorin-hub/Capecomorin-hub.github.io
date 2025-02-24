@@ -6,12 +6,106 @@
     <title>Payments</title>
 </head>
 <body>
-    <link rel="stylesheet" href="styles.css">
-    <header>
-        <h1>Welcome to Cape Comorin School</h1>
-    </header>
-    <footer style="margin: 5px;">
-        <p>© 2024 Cape Comorin School | Designed with ❤️ |</p>
-    </footer>
+  
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("img/bg.jpg");
+            background-size: contain;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+
+        .container h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        img {
+            width: 200px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px ;
+            border: 1px solid gray;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: darkred;
+            color: white;
+            font-weight: bolder;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease-in-out;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: black;
+        }
+
+        input:focus {
+            border-color: #008CBA;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 140, 186, 0.5);
+        }
+    </style>
+</head>
+
+
+    <div class="container">
+        <h2>Scan & Pay via Google Pay</h2>
+        <img src="qrcode.png" alt="Google Pay QR Code">
+
+        <form id="paymentForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="number" id="amount" placeholder="Amount Paid (INR)" required>
+            <input type="text" id="upi_id" placeholder="UPI Transaction ID" required>
+            <button type="submit">Submit Payment</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("paymentForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value;
+            const amount = document.getElementById("amount").value;
+            const upi_id = document.getElementById("upi_id").value;
+
+            const response = await fetch("http://localhost:3000/verify-payment", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, amount, upi_id })
+            });
+
+            const result = await response.json();
+            alert(result.message);
+        });
+    </script>
+
 </body>
 </html>
