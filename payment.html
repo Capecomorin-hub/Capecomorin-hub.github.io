@@ -128,29 +128,42 @@
 
 
     <script>
-        document.getElementById("paymentForm").addEventListener("submit", async function (event) {
+        document.getElementById("paymentForm").addEventListener("submit", function (event) {
             event.preventDefault();
-
-            const formData = new FormData();
-            formData.append("name", document.getElementById("name").value);
-            formData.append("class", document.getElementById("class-select").value);
-            formData.append("amount", document.getElementById("amount").value);
-            formData.append("screenshot", document.getElementById("screenshot").files[0]);
-
-            const response = await fetch("http://localhost:3000/generate-receipt", {
-                method: "POST",
-                body: formData
-            });
-
-            const result = await response.json();
-            if (result.success) {
-                window.location.href = result.receiptUrl;  // Redirect to download PDF
-            } else {
-                alert(result.message);
+    
+            // Get form values
+            const name = document.getElementById("name").value;
+            const studentClass = document.getElementById("class-select").value;
+            const amount = document.getElementById("amount").value;
+            const fileInput = document.getElementById("screenshot");
+            const file = fileInput.files[0];
+    
+            if (!file) {
+                alert("Please upload a screenshot.");
+                return;
             }
+    
+            // Read file as Data URL (Base64)
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const screenshotData = e.target.result;
+    
+                // Store data in localStorage
+                localStorage.setItem("paymentData", JSON.stringify({
+                    name: name,
+                    class: studentClass,
+                    amount: amount,
+                    screenshot: screenshotData
+                }));
+    
+                // Redirect to paid.html
+                window.location.href = "paid.html";
+            };
+    
+            reader.readAsDataURL(file);
         });
     </script>
-
+    
 </body>
 
 </html>
