@@ -19,7 +19,7 @@
           <input type="text" style="color: white;font-style: italic;"  name="username" placeholder="Name" required>
 <br>
 
-<select id="class-select" name="class" style="color: #9d9d9d;font-style: italic;">
+<select id="class-select" name="class" style="color: #9d9d9d;font-style: italic;" required>
   <option value="Class">Class</option>
   <option value="Play Group">Play Group</option>
   <option value="Nursery">Nursery</option>
@@ -38,7 +38,11 @@
         </form>
         </div>
       
-     
+     <script>document.querySelector("button[title='Submit']").addEventListener("click", function(event) {
+      event.preventDefault(); // Form submit hone se rokne ke liye
+      window.location.href = "payment.html"; // Redirect to payment page
+  });
+  </script>
      
 </body>
 </html>
