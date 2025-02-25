@@ -1,23 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payments</title>
 </head>
+
 <body>
-  
+
     <style>
         body {
             font-family: Arial, sans-serif;
             background: url("img/bg.jpg");
             background-size: contain;
-            
+
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            
+
+        }
+
+        select {
+            color: #666;
+            font-style: italic;
+            background: #fff;
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        select:focus {
+            border-color: #008CBA;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 140, 186, 0.5);
         }
 
         .container {
@@ -43,7 +63,7 @@
         input {
             width: 90%;
             padding: 10px;
-            margin: 10px ;
+            margin: 10px;
             border: 1px solid gray;
             border-radius: 5px;
             font-size: 16px;
@@ -74,38 +94,63 @@
             box-shadow: 0 0 5px rgba(0, 140, 186, 0.5);
         }
     </style>
-</head>
+    </head>
 
 
     <div class="container">
         <h2>Scan & Pay via Google Pay</h2>
-        <img src="qrcode.png" alt="Google Pay QR Code">
+        <img src="img/QR.jpeg" alt="Google Pay QR Code">
 
         <form id="paymentForm">
             <input type="text" id="name" placeholder="Your Name" required>
-            <input type="number" id="amount" placeholder="Amount Paid (INR)" required>
-            <input type="text" id="upi_id" placeholder="UPI Transaction ID" required>
+            <select id="class-select" name="class" class="form-input">
+                <option value="" disabled selected>Select Class</option>
+                <option value="Play Group">Play Group</option>
+                <option value="Nursery">Nursery</option>
+                <option value="Prep">Prep</option>
+                <option value="1st">1st</option>
+                <option value="2nd">2nd</option>
+                <option value="3rd">3rd</option>
+                <option value="4th">4th</option>
+                <option value="5th">5th</option>
+                <option value="6th">6th</option>
+                <option value="7th">7th</option>
+                <option value="8th">8th</option>
+            </select>
+
+            <input type="number" id="amount" placeholder="Amount Paid (INR)" min="1" required>
+
+            <pre>Upload Screenshot</pre>
+            <input type="file" id="screenshot" accept="image/*" required>
             <button type="submit">Submit Payment</button>
         </form>
     </div>
 
-    <script>
-        document.getElementById("paymentForm").addEventListener("submit", async function(event) {
-            event.preventDefault();
-            const name = document.getElementById("name").value;
-            const amount = document.getElementById("amount").value;
-            const upi_id = document.getElementById("upi_id").value;
 
-            const response = await fetch("http://localhost:3000/verify-payment", {
+    <script>
+        document.getElementById("paymentForm").addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const formData = new FormData();
+            formData.append("name", document.getElementById("name").value);
+            formData.append("class", document.getElementById("class-select").value);
+            formData.append("amount", document.getElementById("amount").value);
+            formData.append("screenshot", document.getElementById("screenshot").files[0]);
+
+            const response = await fetch("http://localhost:3000/generate-receipt", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, amount, upi_id })
+                body: formData
             });
 
             const result = await response.json();
-            alert(result.message);
+            if (result.success) {
+                window.location.href = result.receiptUrl;  // Redirect to download PDF
+            } else {
+                alert(result.message);
+            }
         });
     </script>
 
 </body>
+
 </html>
