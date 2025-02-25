@@ -102,7 +102,7 @@
         <img src="img/QR.jpeg" alt="Google Pay QR Code">
 
         <form id="paymentForm">
-            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="text" id="name" placeholder="Student Name" required>
             <select id="class-select" name="class" class="form-input">
                 <option value="" disabled selected>Select Class</option>
                 <option value="Play Group">Play Group</option>
@@ -119,7 +119,7 @@
             </select>
 
             <input type="number" id="amount" placeholder="Amount Paid (INR)" min="1" required>
-
+            <input type="email" id="email" placeholder="Your Email" required>
             <pre>Upload Screenshot</pre>
             <input type="file" id="screenshot" accept="image/*" required>
             <button type="submit">Submit Payment</button>
@@ -127,43 +127,51 @@
     </div>
 
 
-    <script>
-        document.getElementById("paymentForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-    
-            // Get form values
-            const name = document.getElementById("name").value;
-            const studentClass = document.getElementById("class-select").value;
-            const amount = document.getElementById("amount").value;
-            const fileInput = document.getElementById("screenshot");
-            const file = fileInput.files[0];
-    
-            if (!file) {
-                alert("Please upload a screenshot.");
-                return;
-            }
-    
-            // Read file as Data URL (Base64)
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const screenshotData = e.target.result;
-    
-                // Store data in localStorage
-                localStorage.setItem("paymentData", JSON.stringify({
-                    name: name,
-                    class: studentClass,
-                    amount: amount,
-                    screenshot: screenshotData
-                }));
-    
-                // Redirect to paid.html
-                window.location.href = "https://capecomorin-hub.github.io/paid.html";
-            };
-    
-            reader.readAsDataURL(file);
-        });
-    </script>
-    
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+    window.onload = function() {
+        emailjs.init("owxBlqkAcSG1QkSCn"); // Replace with your EmailJS Public Key
+    };
+
+    document.getElementById("paymentForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const studentClass = document.getElementById("class-select").value;
+        const amount = document.getElementById("amount").value;
+        const fileInput = document.getElementById("screenshot");
+        const file = fileInput.files[0];
+
+        if (!file) {
+            alert("Please upload the payment screenshot.");
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            const screenshotBase64 = reader.result.split(",")[1]; // Removing data:image prefix
+
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+    name: name,
+    student_class: studentClass,
+    amount: amount,
+    screenshot: screenshotBase64,
+    email_to: "ccs.nurturedreams@gmail.com",
+    reply_to: document.getElementById("email").value // User's email ID
+})
+
+            .then(() => {
+                window.location.href = "https://capecomorin-hub.github.io/paid.html"; // Redirect on success
+            })
+            .catch(error => {
+                console.error("Error sending email:", error);
+                alert("Failed to send email. Please try again.");
+            });
+        };
+    });
+</script>
+
 </body>
 
 </html>
