@@ -76,7 +76,7 @@
            }
 
            50% {
-               left: 60vw;
+               left: 40%;
                /* Move to the right side (80% of the container's width) */
            }
 
