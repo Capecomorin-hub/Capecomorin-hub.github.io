@@ -1,0 +1,24 @@
+{
+  "name": "capecomorin-hub.github.io",
+  "version": "1.0.0",
+  "description": "This is the official website of CCS - Cape Comorin School\r # Cape Comorin Children School Website\r ## About the School",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DhawalShankar/Capecomorin-hub.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DhawalShankar/Capecomorin-hub.github.io/issues"
+  },
+  "homepage": "https://github.com/DhawalShankar/Capecomorin-hub.github.io#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
+  }
+}

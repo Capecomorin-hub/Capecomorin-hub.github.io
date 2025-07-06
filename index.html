@@ -3,68 +3,475 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CCS</title>
- <link rel="stylesheet" href="styles.css">
+    <title>CCS - Cape Comorin School - Where Dreams Are Nurtured</title>
+    <link rel="stylesheet" href="src/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glass-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulse-glow {
+            from { box-shadow: 0 0 20px rgba(102, 126, 234, 0.5); }
+            to { box-shadow: 0 0 30px rgba(102, 126, 234, 0.8); }
+        }
+        
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .text-shimmer {
+            background: linear-gradient(45deg, #f8f8f8, #f9fc37, #ffed94);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .morphing-border {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .morphing-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
+            background-size: 200% 200%;
+            animation: border-morph 4s ease-in-out infinite;
+            z-index: -1;
+            border-radius: inherit;
+        }
+        
+        @keyframes border-morph {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <h1>Welcome to Cape Comorin School</h1>
-    </header>
+<body class="bg-gray-50 overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-card transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">C</span>
+                    </div>
+                    <span class="text-white font-bold text-xl">Cape Comorin School</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-blue-200 transition-colors duration-200">Home</a>
+                    <a href="#about" class="text-white hover:text-blue-200 transition-colors duration-200">About</a>
+                    <a href="#programs" class="text-white hover:text-blue-200 transition-colors duration-200">Programs</a>
+                    <a href="#contact" class="text-white hover:text-blue-200 transition-colors duration-200">Contact</a>
+                </div>
+                <button class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="login.html">Fee Payment</a>
-        <a href="contact.html">Contact</a>
-    </nav><div class="Motto" > <h2 >Where the Dreams are Nurtured!</h2>
-       </div>
-    <section class="hero">
-       
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute inset-0" style="background-image: url('img/sch3.jpg'); background-size: cover; background-position: center; opacity: 0.3;"></div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-white bg-opacity-20 rounded-full floating-animation"></div>
+        <div class="absolute top-40 right-20 w-16 h-16 bg-blue-300 bg-opacity-30 rounded-full floating-animation" style="animation-delay: -2s;"></div>
+        <div class="absolute bottom-40 left-20 w-12 h-12 bg-purple-300 bg-opacity-40 rounded-full floating-animation" style="animation-delay: -4s;"></div>
+        
+        <div class="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 fade-in">
+                Where <span class="text-shimmer">Dreams</span> Are Nurtured
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 fade-in opacity-90" style="animation-delay: 0.2s;">
+                Empowering young minds with excellence, creativity, and compassion for over 25 years
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in" style="animation-delay: 0.4s;">
+                <button class="morphing-border bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 pulse-glow">
+                    Contact Us
+                </button>
+                <button class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition-all duration-300">
+                    Admissions Open!
+                </button>
+            </div>
+        </div>
     </section>
 
-    <section class="container">
-        <h2 id="about">About Us</h2>
-        <p>Cape Comorin School has a legacy of 25 years in providing a well rounded educational atmosphere. Our mission is to nurture students to achieve academic and personal excellence.</p>
-
-        <h2 id="academics">Academics</h2>
-        <p>We offer a diverse curriculum that encourages critical thinking, creativity, and collaboration.</p>
-
-        <h2 id="admissions">Admissions</h2>
-        <p>Join our vibrant school community by exploring our admissions process. Contact us for more details. Call 9936530331!</p>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                        Excellence in <span class="text-purple-600">Education</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        For over 25 years, Cape Comorin School has been a beacon of educational excellence in Kanpur, 
+                        fostering creativity, critical thinking, and character development in every student where dreams are truly nurtured.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+                            <span class="text-gray-700">Scientifically proven academic programs</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                            <span class="text-gray-700">Dedicated and passionate educators</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            <span class="text-gray-700">State-of-the-art facilities</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <img src="https://images.pexels.com/photos/1516440/pexels-photo-1516440.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Students learning" 
+                         class="rounded-2xl shadow-2xl hover-lift">
+                </div>
+            </div>
+        </div>
     </section>
-    <div class="notice" >
-        <h2 style="background-color:#D39D55; padding: 5px;">
-            Notice Board
-        </h2>
-        <h4 style="font-style: italic; margin: 5px;">Festivities</h4>
-        <div class="calendar">
-        <ul>
-            <li><strong>April 14, 2025 (Monday):</strong> Dr. Bhimrao Ambedkar Jayanti</li>
-            <li><strong>April 17, 2025 (Thursday):</strong> Ram Navami</li>
-            <li><strong>May 1, 2025 (Thursday):</strong> Labour Day</li>
-            <li><strong>May 15 to June 30, 2025:</strong> Summer Vacation</li>
-            <li><strong>August 15, 2025 (Friday):</strong> Independence Day</li>
-            <li><strong>August 19, 2025 (Tuesday):</strong> Rakshabandhan</li>
-            <li><strong>August 25, 2025 (Monday):</strong> Janmashtami</li>
-            <li><strong>September 16, 2025 (Tuesday):</strong> Eid-e-Milad/Baravafat</li>
-            <li><strong>October 2, 2025 (Thursday):</strong> Mahatma Gandhi Jayanti</li>
-            <li><strong>October 12, 2025 (Sunday):</strong> Dussehra Mahanavami / Vijay Dashami</li>
-            <li><strong>October 31, 2025 (Friday):</strong> Diwali</li>
-            <li><strong>November 2, 2025 (Sunday):</strong> Govardhan Puja</li>
-            <li><strong>November 3, 2025 (Monday):</strong> Bhaiya Dooj</li>
-            <li><strong>November 15, 2025 (Saturday):</strong> Guru Nanak Jayanti / Kartik Purnima</li>
-            <li><strong>December 25, 2025 (Thursday):</strong> Christmas Day</li>
-            <li><strong>January 1, 2026 (Thursday):</strong> New Year's Day</li>
-            <li><strong>January 26, 2026 (Monday):</strong> Republic Day</li>
-            <li><strong>February 14, 2026 (Saturday):</strong> Basant Panchami</li>
-            <li><strong>March 8, 2026 (Sunday):</strong> Holi</li>
-            <li><strong>March 25, 2026 (Wednesday):</strong> Good Friday</li>
-            <li><strong>March 29, 2026 (Sunday):</strong> Ram Navami</li>
-        </ul>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-20 bg-gray-50 parallax-bg" style="background-image: url('https://images.pexels.com/photos/256395/pexels-photo-256395.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');">
+        <div class="bg-black bg-opacity-50 py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 fade-in">
+                    Our <span class="text-yellow-400">Programs</span>
+                </h2>
+                <p class="text-xl text-gray-200 mb-12 fade-in">Comprehensive education from Play Group to 8th Standard - nurturing every stage of growth</p>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glass-card rounded-2xl p-8 hover-lift fade-in">
+                        <div class="w-16 h-16 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1a4 4 0 014 4v2a4 4 0 01-4 4H9m-5-4a2 2 0 01-2-2V7a2 2 0 012-2h1m0 0V4a2 2 0 012-2h2a2 2 0 012 2v1.586a1 1 0 01-.293.707L11 6H9V4.5a2.5 2.5 0 00-5 0V6a1 1 0 01-1 1"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Play Group & Nursery</h3>
+                        <p class="text-gray-200">Nurturing the youngest minds with love, care, and playful learning experiences that build confidence and curiosity.</p>
+                    </div>
+                    
+                    <div class="glass-card rounded-2xl p-8 hover-lift fade-in" style="animation-delay: 0.2s;">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Primary (1st - 5th)</h3>
+                        <p class="text-gray-200">Building strong foundations in core subjects with interactive learning, creativity, and character development.</p>
+                    </div>
+                    
+                    <div class="glass-card rounded-2xl p-8 hover-lift fade-in" style="animation-delay: 0.4s;">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Middle School (6th - 8th)</h3>
+                        <p class="text-gray-200">Developing critical thinking, leadership skills, and preparing students for their next academic journey with confidence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Statistics Section -->
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-4 gap-8 text-center">
+      <div class="fade-in">
+        <div class="text-2xl font-semibold text-purple-600 mb-2">Thriving Learners</div>
+        <p class="text-gray-600">Empowered every day</p>
+      </div>
+      <div class="fade-in" style="animation-delay: 0.1s;">
+        <div class="text-2xl font-semibold text-blue-600 mb-2">Academic Excellence</div>
+        <p class="text-gray-600">Rooted in values</p>
+      </div>
+      <div class="fade-in" style="animation-delay: 0.2s;">
+        <div class="text-2xl font-semibold text-green-600 mb-2">Dedicated Educators</div>
+        <p class="text-gray-600">Guiding every step</p>
+      </div>
+      <div class="fade-in" style="animation-delay: 0.3s;">
+        <div class="text-2xl font-semibold text-orange-600 mb-2">Legacy of Trust</div>
+        <p class="text-gray-600">Shaping generations</p>
+      </div>
     </div>
-    </div>
-    <footer style="margin: 5px;">
-        <p>© 2024 Cape Comorin School | Designed with ❤️ |</p>
+  </div>
+</section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 hero-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-white mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 fade-in">Get in <span class="text-yellow-400">Touch</span></h2>
+                <p class="text-xl opacity-90 fade-in">Ready to begin your educational journey with us?</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <img src="https://images.pexels.com/photos/1181398/pexels-photo-1181398.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="School building" 
+                         class="rounded-2xl shadow-2xl hover-lift">
+                </div>
+                <div class="glass-card rounded-2xl p-8 fade-in">
+                    <form class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="First Name" class="w-full p-4 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-black placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
+                            <input type="text" placeholder="Last Name" class="w-full p-4 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-black placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
+                        </div>
+                        <input type="email" placeholder="Email Address" class="w-full p-4 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-black placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
+                        <textarea placeholder="Message" rows="4" class="w-full p-4 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-black placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"></textarea>
+                        <button type="submit" class="w-full bg-white text-purple-600 py-4 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-300 pulse-glow">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">C</span>
+                        </div>
+                        <span class="text-white font-bold text-xl">Cape Comorin School</span>
+                    </div>
+                    <p class="text-gray-400">Where Dreams Are Nurtured - Excellence in education since long, shaping young minds in Kanpur.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                       <div>
+  
+  <ul class="space-y-2 text-gray-400">
+    <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+    <li><a href="#contact" class="hover:text-white transition-colors">Admissions</a></li>
+    <li><a href="#programs" class="hover:text-white transition-colors">Programs</a></li>
+    <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+  </ul>
+</div>
+
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>📍 HIG 295 Ratan Lal Nagar, Kanpur</li>
+                        <li>📞 +91 9839474191</li>
+                        <li>✉️ ccs.nurturedreams@gmail.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Reach Us</h4>
+ <div>
+  <h4 class="font-semibold mb-4">Follow Us</h4>
+  <div class="flex space-x-4">
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/capecomorinschool" target="_blank" rel="noopener noreferrer"
+       class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+      <i class="fab fa-facebook-f text-white"></i>
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/ccs.nurturedreams/" target="_blank" rel="noopener noreferrer"
+       class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors">
+      <i class="fab fa-instagram text-white"></i>
+    </a>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/919839474191" target="_blank" rel="noopener noreferrer"
+       class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors">
+      <i class="fab fa-whatsapp text-white"></i>
+    </a>
+  </div>
+</div>
+
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Cape Comorin School. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+document.querySelectorAll('button').forEach(button => {
+    const text = button.textContent.trim();
+
+    if (text === "Contact Us") {
+        button.addEventListener('click', () => {
+            window.location.href = "tel:+919839474191";
+        });
+    }
+
+    if (text === "Admissions Open!") {
+        button.addEventListener('click', () => {
+            window.location.href = "https://maps.app.goo.gl/dMw2YNnQ9q7iDbnV8";
+        });
+    }
+});
+
+
+document.querySelector("form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const first = document.querySelector('input[placeholder="First Name"]').value.trim();
+    const last = document.querySelector('input[placeholder="Last Name"]').value.trim();
+    const email = document.querySelector('input[type="email"]').value.trim();
+    const msg = document.querySelector('textarea').value.trim();
+
+    if (!first || !last || !email || !msg) {
+        alert("Please fill all fields.");
+        return;
+    }
+
+    const fullMessage = `*New Enquiry from Website*\n\n👤 Name: ${first} ${last}\n📧 Email: ${email}\n💬 Message: ${msg}`;
+    const encoded = encodeURIComponent(fullMessage);
+    const waLink = `https://wa.me/919839474191?text=${encoded}`;
+
+    window.open(waLink, '_blank');
+});
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter animation
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                element.textContent = Math.floor(current);
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                }
+            }, 20);
+        }
+
+        // Trigger counter animation when in view
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.getAttribute('data-counter'));
+                    animateCounter(entry.target, target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.querySelectorAll('[data-counter]').forEach(counter => {
+            counterObserver.observe(counter);
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-black', 'bg-opacity-80');
+            } else {
+                navbar.classList.remove('bg-black', 'bg-opacity-80');
+            }
+        });
+    </script>
 </body>
 </html>
